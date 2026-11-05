@@ -1,0 +1,7 @@
+{
+  "_porque": "Ajustes del pack. «prefijo» va delante de cada skill del pack (común y clientes) para no chocar con las del autor de Arbrain ni con las del cliente: no lo cambies una vez haya clientes instalados. Sube «version» cada vez que publiques cambios.",
+  "nombre": "Juanan",
+  "github": "juananchatgpt",
+  "prefijo": "jn",
+  "version": "0.1.0"
+}

@@ -1,0 +1,11 @@
+/* Colores del cliente. Cambia también cada «-rgb» (el mismo color en números rojo, verde, azul).
+   Variables disponibles: al principio de arbrain/src/app/globals.css de Arbrain. */
+html:root:not(.dark) {
+  --primary: #0E7C66;
+  --primary-rgb: 14, 124, 102;
+}
+
+html.dark:root {
+  --primary: #2BB89A;
+  --primary-rgb: 43, 184, 154;
+}
