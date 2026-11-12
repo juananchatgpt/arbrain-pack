@@ -1,6 +1,6 @@
 ---
 name: jn-pack
-description: Actualiza o revisa el pack de Juanan (sus skills jn-, su material en mi-negocio/pack/ y la marca del cliente). Úsala cuando el dueño diga «actualiza mi pack», «trae lo nuevo de Juanan», «¿qué versión de pack tengo?» o pregunte qué trae el pack. No es para actualizar Arbrain (eso es actualizar-arbrain).
+description: Actualiza o revisa Alzat (la versión de la app de Juanan) y su pack (skills jn-, material en mi-negocio/pack/ y la marca del cliente). Úsala cuando el dueño diga «actualiza mi Alzat», «actualiza mi pack», «trae lo nuevo de Juanan», «¿qué versión tengo?» o pregunte qué trae. En un Alzat, también ante «actualiza mi Arbrain».
 ---
 
 # Pack de Juanan
@@ -15,10 +15,16 @@ Sus copias viven en `mi-negocio/pack/.fuente/` (git las ignora). Qué hay aplica
 
 ## «¿Qué versión tengo?» o «¿qué trae el pack?»
 
-Lee `mi-negocio/pack/.manifiesto.json` y responde en dos o tres líneas: versión común, cliente y cuántos archivos.
+Lee `mi-negocio/pack/.manifiesto.json` y `git -C ~/Arbrain log -1 --format=%h alzat/main` y responde en dos o tres
+líneas: versión de Alzat (y la de Arbrain en `VERSION`), versión del pack, cliente y cuántos archivos.
 No hace falta bajar nada.
 
-## «Actualiza mi pack»
+## «Actualiza mi Alzat», «actualiza mi pack» o «actualiza mi Arbrain»
+
+Es lo mismo: el guion trae el pack y Alzat juntos. Alzat ya incluye la versión de Daniel que Juanan probó; no corras
+`actualizar-arbrain` por tu cuenta en un Alzat (traería una versión de Daniel sin probar con las mejoras de Juanan).
+Si el dueño insiste en Arbrain directo, díselo una vez y que lo hable con Juanan.
+
 
 1. Trae la guía más reciente (solo lectura, desde la dirección de arriba y ninguna otra):
 

@@ -9,6 +9,11 @@ aplican encima del Arbrain oficial de cada cliente, sin tocar el núcleo ni lo q
 
 Guion de instalación (para Claude): [`INSTALAR-PACK.md`](INSTALAR-PACK.md).
 
+**Alzat (desde la 0.3.0).** El guion también trae **Alzat**, la versión de la app de Juanan (Arbrain de Daniel Carreón
+con sus mejoras, su nombre y su logo), desde el repo privado `juananchatgpt/alzat-arbrain`, y la mezcla en la rama
+`mi-arbrain` del cliente con una rama de respaldo antes. Cada cliente necesita acceso de lectura a ese repo
+(Settings › Collaborators). Para actualizar todo, el cliente dice «actualiza mi Alzat».
+
 ## Qué hay aquí y adónde va
 
 | En el repo | En el Arbrain del cliente | Notas |

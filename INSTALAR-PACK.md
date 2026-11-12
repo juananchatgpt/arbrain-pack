@@ -118,7 +118,40 @@ if [ -z "$PY" ]; then echo "PACK_FALLA no encuentro Python 3"; else "$PY" "$F/co
   cuáles fueron y que, si quiere la versión nueva de Juanan, te lo pida (entonces enséñale la diferencia entre su
   archivo y el de `mi-negocio/pack/.fuente/` antes de cambiar nada).
 - `PACK_FALLA <motivo>`: detente y díselo con sus palabras; que se lo pase a Juanan.
-- `PACK_OK …`: sigue al PASO 3.
+- `PACK_OK …`: sigue al PASO 2b.
+
+## PASO 2b · Trae Alzat (la versión de Juanan de la app)
+
+Alzat es Arbrain (de Daniel Carreón, licencia Apache 2.0) con las mejoras de Juanan: Ajustes › Diseño, arreglos de
+Windows, su nombre y su logo. Vive en `https://github.com/juananchatgpt/alzat-arbrain` (solo esa dirección) y se
+mezcla en su rama `mi-arbrain`: lo suyo no se toca y antes queda una rama de respaldo.
+
+```bash
+. ~/.arbrain/entorno.sh 2>/dev/null; cd ~/Arbrain || exit 1
+U=https://github.com/juananchatgpt/alzat-arbrain.git; export GIT_TERMINAL_PROMPT=0
+ID=(); git config user.email >/dev/null || ID=(-c user.name=Alzat -c user.email=alzat@localhost)
+if [ "$(git branch --show-current)" != mi-arbrain ]; then echo "ALZAT_FALTA arbrain"
+elif [ -n "$(git remote get-url alzat 2>/dev/null)" ] && [ "$(git remote get-url alzat)" != "$U" ]; then echo "ALZAT_REMOTO_AJENO $(git remote get-url alzat)"
+else
+  git remote get-url alzat >/dev/null 2>&1 || git remote add alzat "$U"
+  if ! git fetch -q alzat main; then echo "ALZAT_ACCESO"
+  elif git merge-base --is-ancestor alzat/main HEAD; then echo "ALZAT_AL_DIA $(git rev-parse --short alzat/main)"
+  else
+    git diff --quiet || git "${ID[@]}" commit -qam "Mis cambios antes de traer Alzat ($(date +%F))"
+    git branch "respaldo/antes-de-alzat-$(date +%Y-%m-%d-%H%M)"
+    if git "${ID[@]}" merge -q --no-edit alzat/main; then echo "ALZAT_MEZCLADO $(git rev-parse --short alzat/main)"
+    else git merge --abort; echo "ALZAT_CHOQUE"; fi
+  fi
+fi
+```
+
+| Última línea | Qué haces |
+|---|---|
+| `ALZAT_MEZCLADO …` | Reinicia la app con `node arbrain/scripts/actualizar.mjs reiniciar` (en el chat de la app no corta el turno). La primera vez compila su versión y tarda unos minutos más: díselo. Luego PASO 3. |
+| `ALZAT_AL_DIA …` | Ya tiene la última. PASO 3. |
+| `ALZAT_ACCESO` | Alzat es privado: necesita entrar con su GitHub, como en «Acceso a la parte privada» (Juanan le da acceso de lectura a `alzat-arbrain`). Luego repite este bloque. |
+| `ALZAT_CHOQUE` | Sus cambios y los de Alzat tocan el mismo renglón. No se cambió nada (la mezcla se canceló). Díselo y que se lo pase a Juanan; no resuelvas el choque tú. |
+| `ALZAT_FALTA arbrain` / `ALZAT_REMOTO_AJENO …` | Detente y díselo con sus palabras; que se lo pase a Juanan. |
 
 ## PASO 3 · Al terminar
 
@@ -126,8 +159,9 @@ Dale este resumen (los datos salen de `PACK_OK` y de `mi-negocio/pack/.manifiest
 
 ```text
 Pack de Juanan aplicado · versión <comun> · cliente <nombre o «solo común»>
+Alzat: <«al día» o «traído», con su versión corta>
 Nuevo: <las skills jn- en una línea, por su nombre, y «material en mi-negocio/pack/»>
-Para actualizar: dile a tu Arbrain «actualiza mi pack».
+Para actualizar todo: dile a tu Alzat «actualiza mi Alzat».
 ```
 
 Si cambió la marca (`mi-marca/`), dile que recargue la ventana de Arbrain (Ctrl+R o Cmd+R) para verla. Las skills nuevas
